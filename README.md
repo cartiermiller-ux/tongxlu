@@ -11,3 +11,4 @@
 <img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/46d40fde-6e62-4696-b690-27883006f432" />
 <img width="1919" height="926" alt="image" src="https://github.com/user-attachments/assets/c1a0001e-bf06-48d5-a251-eb8dbe344827" />
 <img width="1918" height="918" alt="image" src="https://github.com/user-attachments/assets/3afedcdd-b7c9-46ff-9a7c-ce7333bb6510" />
+电报：https://t.me/CartiernadMiller 频道：https://t.me/haiweishemei QQ 3782261706
