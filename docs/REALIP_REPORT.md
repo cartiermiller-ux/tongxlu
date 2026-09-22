@@ -13,7 +13,7 @@
 
 
 - 站点：`cartier.us.cc`（docroot `/www/wwwroot/cartier.us.cc/public`，PHP 7.3）
-- 服务器：`8.219.7.135`（root，paramiko + SFTP）
+- 服务器：`203.0.113.10`（root，paramiko + SFTP）
 - 时间：2026-09-22 08:01 ~ 08:15 (+0800)
 - 新增文件：`/www/server/panel/vhost/nginx/extension/cartier.us.cc/realip.conf`（**唯一改动**）
 - 未改动：全局 `nginx.conf`（mtime 仍为 04:53）、vhost `cartier.us.cc.conf`、`app/` 下任何文件、`common.php`、`Permissions.php`、`public/dl|demo|uploads`、其它站点配置
@@ -127,10 +127,10 @@ nginx worker 已换新（reload 前 336440/336441 → 之后 340077/340078）
 
 ### c. 公网直连源站 → 记为真实公网 IP ✅
 
-从本机（公网出口 `116.129.180.135`）`curl --resolve cartier.us.cc:443:8.219.7.135` 绕过 DNS：
+从本机（公网出口 `203.0.113.20`）`curl --resolve cartier.us.cc:443:203.0.113.10` 绕过 DNS：
 
 ```
-116.129.180.135 - - [22/Sep/2026:08:02:17 +0800] "GET /admin_login.shtml?ccrpcc582dfd1 HTTP/1.1" 200 16641 "-" "curl/8.20.0"
+203.0.113.20 - - [22/Sep/2026:08:02:17 +0800] "GET /admin_login.shtml?ccrpcc582dfd1 HTTP/1.1" 200 16641 "-" "curl/8.20.0"
 ```
 
 **但“经 CF 访问”的场景今天测不了 —— 见第 7 节。**
@@ -208,9 +208,9 @@ grep -c '[ error ]' /www/wwwroot/cartier.us.cc/runtime/log/*/*.log
 从服务器用三个公共解析器查 `cartier.us.cc`，以及 Cloudflare / Google 的 DoH：
 
 ```
-1.1.1.1 -> 8.219.7.135      8.8.8.8 -> 8.219.7.135      9.9.9.9 -> 8.219.7.135
-DoH 1.1.1.1 : {"Answer":[{"name":"cartier.us.cc","type":1,"TTL":300,"data":"8.219.7.135"}]}
-DoH google  : {"Answer":[{"name":"cartier.us.cc.","type":1,"TTL":300,"data":"8.219.7.135"}]}
+1.1.1.1 -> 203.0.113.10      8.8.8.8 -> 203.0.113.10      9.9.9.9 -> 203.0.113.10
+DoH 1.1.1.1 : {"Answer":[{"name":"cartier.us.cc","type":1,"TTL":300,"data":"203.0.113.10"}]}
+DoH google  : {"Answer":[{"name":"cartier.us.cc.","type":1,"TTL":300,"data":"203.0.113.10"}]}
 NS          : poppy.ns.cloudflare.com / trace.ns.cloudflare.com   (zone 确实托管在 CF)
 ```
 
