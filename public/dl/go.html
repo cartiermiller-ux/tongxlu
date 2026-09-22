@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0f14">
+<title>正在跳转…</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:#0d0f14;color:#e8ebf2;font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;display:flex;align-items:center;justify-content:center;padding:24px;text-align:center}
+.box{max-width:420px;width:100%}
+.spin{width:38px;height:38px;margin:0 auto 18px;border:3px solid #262d3d;border-top-color:#3b82f6;border-radius:50%;animation:s .8s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+p{margin:0 0 10px;font-size:15px;color:#aab3c5}
+.wx{display:none;margin-top:14px;padding:16px;border-radius:16px;background:linear-gradient(135deg,#2a1d0a,#3a2a10);border:1px solid #6b4d16;color:#ffd166;font-size:15px;line-height:1.8;text-align:left}
+.wx.show{display:block}
+.wx b{color:#fff;letter-spacing:2px}
+a{color:#7fb0ff;font-size:13px;text-decoration:none;display:inline-block;margin-top:12px;border-bottom:1px solid rgba(127,176,255,.4);padding-bottom:1px}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="spin" id="spin"></div>
+  <p id="msg">正在为你跳转…</p>
+  <div class="wx" id="wx">微信内无法直接下载安装包。<br>请点击右上角 <b>···</b> 选择「在浏览器打开」。</div>
+  <a id="manual" href="index.html">没有自动跳转？点此继续</a>
+</div>
+<script>
+(function () {
+  "use strict";
+
+  var ANDROID_URL = "https://cartier.us.cc/dl/anye-shequ-1.0.10.apk";
+  var IOS_URL = "itms-services://?action=download-manifest&url=https://cartier.us.cc/dl/manifest.plist";
+
+  var q = window.location.search || "";
+  var code = "";
+  try {
+    var p = new URLSearchParams(q);
+    code = p.get("code") || p.get("yqm") || "";
+  } catch (e) {
+    var m = /[?&](?:code|yqm)=([^&#]*)/i.exec(q);
+    code = m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : "";
+  }
+  code = String(code).trim();
+
+  var ua = navigator.userAgent || "";
+  var isWeChat = /MicroMessenger/i.test(ua);
+  var isAndroid = /Android|Adr\b|HarmonyOS|MiuiBrowser/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua);
+
+  var target;
+  if (code) {
+    target = "index.html?code=" + encodeURIComponent(code);
+  } else if (isAndroid && !isIOS) {
+    target = ANDROID_URL;
+  } else if (isIOS && !isAndroid) {
+    target = IOS_URL;
+  } else {
+    target = "index.html";
+  }
+
+  var manual = document.getElementById("manual");
+  if (manual) { manual.setAttribute("href", target); }
+
+  if (isWeChat && !code) {
+    /* 微信内直接下载会被拦截，提示改用浏览器打开 */
+    var spin = document.getElementById("spin");
+    if (spin) { spin.style.display = "none"; }
+    var msg = document.getElementById("msg");
+    if (msg) { msg.textContent = "请使用浏览器打开本页面下载"; }
+    var wx = document.getElementById("wx");
+    if (wx) { wx.className = "wx show"; }
+    return;
+  }
+
+  setTimeout(function () { window.location.href = target; }, 200);
+})();
+</script>
+</body>
+</html>

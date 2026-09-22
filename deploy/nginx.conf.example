@@ -1,0 +1,52 @@
+# =============================================================================
+# 奥贝通讯 · Nginx 站点配置样例（ThinkPHP 5.0，docroot = public/）
+# -----------------------------------------------------------------------------
+# 这是从线上站点配置整理出的「通用样例」，去掉了宝塔面板专有指令与证书路径。
+# 使用时请按你的实际路径修改 root / fastcgi_pass / server_name。
+# =============================================================================
+server {
+    listen       80;
+    server_name  cartier.us.cc;
+
+    # ★ 关键：站点根目录必须指向 public/，而不是项目根目录
+    root   /www/wwwroot/cartier.us.cc/public;
+    index  index.php index.html index.htm;
+
+    # ---- ThinkPHP 5.0 伪静态（PATH_INFO 模式） ----
+    location / {
+        if (!-e $request_filename) {
+            rewrite ^(.*)$ /index.php?s=$1 last;
+        }
+    }
+
+    # ---- PHP-FPM ----
+    location ~ \.php(.*)$ {
+        fastcgi_pass   127.0.0.1:9000;          # 按实际 php-fpm 监听地址修改
+        fastcgi_index  index.php;
+        fastcgi_split_path_info  ^(.+\.php)(.*)$;
+        fastcgi_param  PATH_INFO        $fastcgi_path_info;
+        fastcgi_param  PATH_TRANSLATED  $document_root$fastcgi_path_info;
+        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+        include        fastcgi_params;
+    }
+
+    # ---- 禁止访问敏感文件（务必保留） ----
+    location ~* (\.user\.ini|\.htaccess|\.htpasswd|\.env.*|\.gitignore|\.gitattributes|composer\.(json|lock)|package(-lock)?\.json|\.bak(up)?|\.old|\.tmp|\.log|\.sql(\.gz)?|\.md)$ {
+        return 404;
+    }
+
+    # ---- 禁止访问敏感目录（务必保留） ----
+    location ~* /(\.git|\.svn|\.vscode|\.idea|\.ssh|\.github|node_modules|runtime)/ {
+        return 404;
+    }
+
+    # ---- 静态资源缓存 ----
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$ { expires 30d;  access_log off; }
+    location ~ .*\.(js|css)?$                 { expires 12h;  access_log off; }
+
+    # ---- 上传大小：App 相册图片单张最大 20MB，务必放开 ----
+    client_max_body_size  32m;
+
+    access_log  /www/wwwlogs/cartier.us.cc.log;
+    error_log   /www/wwwlogs/cartier.us.cc.error.log;
+}

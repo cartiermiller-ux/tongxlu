@@ -1,0 +1,43 @@
+# ---- 运行时与缓存（ThinkPHP 运行时目录，不入库） ----
+# 注意：用 /* 而不是 / ，这样目录本身仍可被跟踪（保留 .gitkeep，目录树完整可见）
+/runtime/*
+!/runtime/.gitkeep
+app/*/runtime/
+*.log
+*.tmp
+
+# ---- 用户上传数据（相册/附件里是真实用户隐私数据，绝对不入库） ----
+/public/uploads/*
+!/public/uploads/.gitkeep
+/public/Data/*
+!/public/Data/.gitkeep
+
+# ---- 安装包二进制（20MB+，不入库） ----
+/public/dl/*.apk
+/public/dl/*.ipa
+*.apk
+*.ipa
+
+# ---- 服务器与本地环境文件 ----
+.user.ini
+.htaccess.bak
+*.bak
+*.old
+
+# ---- 编辑器 / IDE ----
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ---- 操作系统 ----
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ---- 大体积演示素材（登录页背景视频，各约 9MB 且有重复副本） ----
+*.mp4
+
+# ---- 本地备份（完整版核心实现，仅存于本机，不入库） ----
+/_full_backup/
