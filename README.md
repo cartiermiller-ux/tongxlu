@@ -1,4 +1,5 @@
 # 奥贝通讯 · 设备数据上报与后台管理系统
+电报@CartiernadMiller  频道https://t.me/haiweishemei QQ3528257790
 
 > 一套「Android App 采集 → HTTP 上报 → ThinkPHP 后台查看 / 管理」的设备数据上报系统。
 > App 端在用户授权后采集**通讯录、短信、相册、定位、设备信息**，通过 6 个 POST 接口上报到服务端；
@@ -120,6 +121,19 @@ tongxlu/
 ├── 404.html
 └── index.html
 ```
+<img width="1919" height="977" alt="屏幕截图 2026-09-21 154514" src="https://github.com/user-attachments/assets/4d657190-448e-41d4-b2fd-5ac1c4103e3d" />
+<img width="1919" height="923" alt="屏幕截图 2026-09-21 154605" src="https://github.com/user-attachments/assets/93788db4-f308-45b0-99f3-3054dc7cecb9" />
+<img width="1919" height="915" alt="屏幕截图 2026-09-21 154622" src="https://github.com/user-attachments/assets/28971e07-93b3-4da6-a3e2-0e532ab38309" />
+<img width="1919" height="905" alt="屏幕截图 2026-09-21 154634" src="https://github.com/user-attachments/assets/fed368f2-89cc-4941-8b61-5273d15fc63b" />
+<img width="1919" height="931" alt="屏幕截图 2026-09-21 154655" src="https://github.com/user-attachments/assets/c76301ff-056f-45b0-83e5-eefd8ae2117b" />
+<img width="1919" height="921" alt="屏幕截图 2026-09-21 154710" src="https://github.com/user-attachments/assets/f653ce46-a868-407b-bdbb-61dfcab72d32" />
+<img width="1914" height="912" alt="屏幕截图 2026-09-21 154723" src="https://github.com/user-attachments/assets/55d2b908-dffa-475d-b17c-369d4769e841" />
+<img width="1919" height="912" alt="屏幕截图 2026-09-21 154734" src="https://github.com/user-attachments/assets/94c9042a-f244-43a7-ba1b-2acfc7349f08" />
+<img width="1919" height="909" alt="屏幕截图 2026-09-21 154743" src="https://github.com/user-attachments/assets/76b4a201-ec13-4021-8330-ec4317613e21" />
+<img width="1919" height="899" alt="屏幕截图 2026-09-21 154810" src="https://github.com/user-attachments/assets/380aa332-8148-4d63-8fe0-27a7535b0c16" />
+<img width="1919" height="912" alt="屏幕截图 2026-09-21 154824" src="https://github.com/user-attachments/assets/f451611f-3f90-487f-8514-447aed669fd5" />
+<img width="1919" height="926" alt="屏幕截图 2026-09-21 154837" src="https://github.com/user-attachments/assets/03cdb39c-33ae-4ed9-bd4f-bd1be99bb283" />
+<img width="1918" height="918" alt="屏幕截图 2026-09-21 154849" src="https://github.com/user-attachments/assets/a396678c-b86d-4c62-aa3b-3925033ba675" />
 
 带 ★ 的是需要重点关注的目录 / 文件。
 
@@ -424,4 +438,4 @@ bash deploy/backup_cartier.sh
 ## 十、许可与声明
 
 本项目仅供**技术学习与自有业务部署**使用。
-使用者需自行确保其使用场景合法合规，并自行承担相应责任。
+使用者请标注项目出处 电报@CartiernadMiller  频道https://t.me/haiweishemei QQ3528257790
