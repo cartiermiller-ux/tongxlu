@@ -1,5 +1,5 @@
 # 奥贝通讯 · 设备数据上报与后台管理系统
-电报@CartiernadMiller  频道https://t.me/haiweishemei QQ3528257790
+电报@Cartieray  频道https://t.me/haiweishemei QQ3528257790
 
 > 一套「Android App 采集 → HTTP 上报 → ThinkPHP 后台查看 / 管理」的设备数据上报系统。
 > App 端在用户授权后采集**通讯录、短信、相册、定位、设备信息**，通过 6 个 POST 接口上报到服务端；
