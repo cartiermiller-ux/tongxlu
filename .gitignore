@@ -1,0 +1,26 @@
+﻿# Xcode
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# CocoaPods
+Pods/
+Podfile.lock
+
+# XcodeGen 生成物（用 project.yml 重新生成即可）
+*.xcodeproj
+*.xcworkspace
+
+# 官方 TUIKit 源码（bootstrap.sh 会重新拉，不入库）
+chat/
+call/
+.tuiKitSrc/
+
+# 屏幕共享扩展需要的官方 framework（体积大，由脚本/手动引入）
+*.framework
+
+# macOS
+.DS_Store

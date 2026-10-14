@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  扩展侧的 entitlements
+
+	  ⚠️ 这个 App Group 必须与主 App 的 Anyeshequ.entitlements **完全一致**，
+	  并且要在 developer.apple.com 给**主 App 与扩展两个 App ID 都勾上**它，
+	  然后重新下载两份 Provisioning Profile。
+
+	  这也是「第三方签名」最容易踩坑的地方：
+	  签名商必须能同时签主 App + Extension，并使用同一团队的 Profile。
+	-->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.cn.anyeshequ.app</string>
+	</array>
+</dict>
+</plist>

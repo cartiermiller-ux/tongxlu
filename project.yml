@@ -1,0 +1,96 @@
+# XcodeGen 工程定义 —— 用 `xcodegen generate` 生成 Anyeshequ.xcodeproj
+#
+# 为什么用 XcodeGen 而不是提交一个 .xcodeproj：
+#   .xcodeproj 是二进制/易冲突的 XML，而且**我在 Windows 上无法生成它**（需要 Xcode）。
+#   用 project.yml 声明式描述，在 macOS 上一条命令就能生成，也便于后续 diff。
+#
+# macOS 上的使用顺序（见 scripts/bootstrap.sh）：
+#   1. bash scripts/bootstrap.sh     # 拉 TUIKit 源码 + pod install
+#   2. xcodegen generate             # 生成 .xcodeproj
+#   3. open Anyeshequ.xcworkspace    # 用 workspace（不是 xcodeproj！）
+#
+# 官方要求：Xcode 16+ / iOS 14+ / CocoaPods 1.12+（推荐 1.16.x）
+
+name: Anyeshequ
+
+options:
+  bundleIdPrefix: cn.anyeshequ
+  deploymentTarget:
+    iOS: "15.0"
+  createIntermediateGroups: true
+  # 不生成 Info.plist —— 我们用自己的（含完整隐私声明）
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    # 官方 demo 的要求：保留 Swift 符号，否则 TUIKit 运行时查找会失败
+    STRIP_SWIFT_SYMBOLS: "NO"
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+    # 屏幕共享需要 ReplayKit；TUICallKit 需要这些系统库
+    ENABLE_BITCODE: "NO"
+    # 允许 arm64（Xcode 16 默认开启 user script sandboxing 会干扰 Pods，关掉）
+    ENABLE_USER_SCRIPT_SANDBOXING: "NO"
+
+targets:
+
+  # ============================================================
+  # 主 App
+  # ============================================================
+  Anyeshequ:
+    type: application
+    platform: iOS
+    deploymentTarget: "15.0"
+
+    sources:
+      - path: Anyeshequ
+        excludes:
+          - "Info.plist"
+          - "Anyeshequ.entitlements"
+
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: cn.anyeshequ.app
+        PRODUCT_NAME: Anyeshequ
+        INFOPLIST_FILE: Anyeshequ/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Anyeshequ/Anyeshequ.entitlements
+        # 屏幕共享的扩展 id（AnyScreenShare.presentSystemBroadcastPicker 里用到）
+        TARGETED_DEVICE_FAMILY: "1"
+        # 用 workspace 里的 Pods，XcodeGen 会自动加
+        CLANG_ENABLE_MODULES: "YES"
+
+    dependencies:
+      # App Extension 必须显式依赖，否则不会被打进 ipa
+      - target: AnyeshequScreenShare
+        embed: true
+
+    # 官方要求：通话需要后台音频
+    info:
+      path: Anyeshequ/Info.plist
+
+  # ============================================================
+  # 屏幕共享扩展（ReplayKit Broadcast Upload Extension）
+  # ============================================================
+  AnyeshequScreenShare:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "15.0"
+
+    sources:
+      - path: AnyeshequScreenShare
+        excludes:
+          - "Info.plist"
+          - "AnyeshequScreenShare.entitlements"
+
+    settings:
+      base:
+        # ⚠️ bundle id 必须是主 App 的 + 后缀，
+        #    且 AnyScreenShare.presentSystemBroadcastPicker 里拼的是 ".ScreenShare"
+        PRODUCT_BUNDLE_IDENTIFIER: cn.anyeshequ.app.ScreenShare
+        PRODUCT_NAME: AnyeshequScreenShare
+        INFOPLIST_FILE: AnyeshequScreenShare/Info.plist
+        CODE_SIGN_ENTITLEMENTS: AnyeshequScreenShare/AnyeshequScreenShare.entitlements
+        # 扩展必须能跑 ReplayKit
+        SKIP_INSTALL: "YES"
+        # 官方要求：ReplayKit 扩展需要 VideoToolbox / Accelerate / libc++
+        OTHER_LDFLAGS: "-lz -lc++"

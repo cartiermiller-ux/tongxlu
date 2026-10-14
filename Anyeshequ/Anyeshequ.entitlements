@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  主 App 的 entitlements
+
+	  ⚠️ App Group 的值必须与下面三处**完全一致**：
+	    1. 本文件
+	    2. AnyeshequScreenShare/AnyeshequScreenShare.entitlements
+	    3. AnyScreenShare.swift 里的 kAppGroupID 常量
+
+	  并且要在 https://developer.apple.com 后台：
+	    - 创建这个 App Group
+	    - 给**主 App 和扩展两个 App ID** 都勾上它
+	    - **重新下载对应的 Provisioning Profile**
+
+	  如果跳过 App Group（传 nil），屏幕共享也能跑，但官方说稳定性会打折。
+	  —— 这也意味着：**用第三方签名时，签名商必须支持同时签主 App + 扩展**
+	-->
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>group.cn.anyeshequ.app</string>
+	</array>
+</dict>
+</plist>

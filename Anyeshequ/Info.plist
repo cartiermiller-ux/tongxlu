@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- ===== 基本信息 ===== -->
+	<key>CFBundleDevelopmentRegion</key>
+	<string>zh_CN</string>
+	<key>CFBundleDisplayName</key>
+	<string>暗夜社区</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1111</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+
+	<!-- ===== 屏幕方向：与安卓端保持一致（竖屏） ===== -->
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+
+	<!-- ===== 启动页：品牌化（深色，与安卓端启动页一致） ===== -->
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+
+	<!-- ===== 网络：允许 http 回落（老接口有 http 基址） ===== -->
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+
+	<!--
+	  ============================================================
+	  隐私权限用途说明 —— 逐条对应上报模块（AnyReport / Collectors）
+	  ============================================================
+	  ⚠️ 这些文案会**原样显示在系统授权弹窗里**，直接影响用户同意率，
+	  同时是 App Store 审核的重点。不要写空话。
+	-->
+	<key>NSContactsUsageDescription</key>
+	<string>用于在「暗夜社区」中帮你快速找到已在社区的朋友，并在你授权后同步通讯录以便匹配好友。我们不会向你的联系人发送任何消息。</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>用于在你授权后读取相册中的图片，以便你选择头像、在聊天中发送图片。</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>用于把聊天中收到的图片保存到你的相册。</string>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>用于在「附近的人」等功能中展示大致位置，帮助同城朋友发现你。</string>
+
+	<!-- 通话/聊天需要 -->
+	<key>NSCameraUsageDescription</key>
+	<string>用于视频通话和拍摄照片发送给好友。</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>用于语音消息、语音通话和视频通话。</string>
+
+	<!--
+	  屏幕共享（ReplayKit）：
+	  官方明确要求跨应用屏幕共享必须声明这条，否则 ReplayKit 起不来
+	-->
+	<key>NSBroadcastUploadExtensionUsageDescription</key>
+	<string>用于在视频通话中把屏幕内容共享给对方。</string>
+
+	<!-- ===== 后台模式：通话保持（官方要求） ===== -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>voip</string>
+	</array>
+
+	<!-- ===== URL Scheme：供通话/分享唤起 ===== -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>cn.anyeshequ.app</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>anyeshequ</string>
+			</array>
+		</dict>
+	</array>
+
+	<!-- 最低 iOS 15（官方要求 Xcode16/iOS14+，我们与官方 demo 对齐用 15）→ 必须 arm64 -->
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+</dict>
+</plist>
